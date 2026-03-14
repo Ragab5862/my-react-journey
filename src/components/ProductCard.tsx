@@ -1,45 +1,50 @@
 import Imeg from "./Imeg";
+import type { IProduct } from "../interfaces";
 import Button from "./Ui/Button";
-interface IProps {}
+import { txtslicer } from "../utils/functions";
+interface IProps {
+  product: IProduct;
+}
 
-const ProductCard = ({}: IProps) => {
+const ProductCard = ({ product }: IProps) => {
+  const { title, description, price, imageURL, category } = product;
   return (
-    <div className="border rounded-md p-2 flex flex-col">
+    <div className="max-w-sm md:max-w-lg max-auto md:max-0 border rounded-md p-2 flex flex-col">
       <Imeg
-        imegURL="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.38"
+        imegURL={imageURL}
         alt="Product name"
-        ClassName="rounded-md mb-4"
+        ClassName="rounded-md mb-4 h-52 w-full lg:object-cover"
       />
 
-      <h3>2026 Omnis :676</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis delectus
-        Aut.
-      </p>
+      <h3>{title}</h3>
+      <p>{txtslicer(description)}</p>
       <div className="flex items-center gap-1 my-2">
         <span className="w-5 h-5 rounded-full bg-gray-950 cursor-pointer" />
         <span className="w-5 h-5 rounded-full bg-orange-500 cursor-pointer" />
         <span className="w-5 h-5 rounded-full bg-blue-900 cursor-pointer" />
       </div>
 
-      <div className="flex items-center justify-between">
-        <span>$500,000</span>
+      <div className="flex items-center justify-between mb-4">
+        <span>{price}</span>
         <Imeg
-          imegURL="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.38"
-          alt="Product name"
-          ClassName="w-10 h-10 rounded-full object-center"
+          imegURL={category.imageURL}
+          alt={category.name}
+          ClassName="w-10 h-10 rounded-full object-center "
         />
       </div>
-      <div className="flex items-center justify-between space-x-2 mt-5">
-        <Button ClassName=" bg-indigo-700">Edit</Button>
-        <Button ClassName=" bg-red-700">Delete</Button>
-        <Button ClassName=" bg-slate-700">Loading</Button>
-        <Button ClassName=" bg-green-700">Success</Button>
-        <Button ClassName=" bg-gray-700">Cancel</Button>
 
+      <div className="flex items-center justify-between space-x-2 mt-5">
+        <Button ClassName=" bg-indigo-700" width="w-full">
+          Edit
+        </Button>
+        <Button ClassName=" bg-red-700 w-full">Delete</Button>
       </div>
     </div>
   );
 };
 
 export default ProductCard;
+
+// *onClick={() => {
+// *  console.log("Edit clicked");
+// }}
