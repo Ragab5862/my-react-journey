@@ -16,8 +16,10 @@ const ProductCard = ({ product }: IProps) => {
         ClassName="rounded-md mb-4 h-52 w-full lg:object-cover"
       />
 
-      <h3>{title}</h3>
-      <p>{txtslicer(description)}</p>
+      <h3 className="text-lg font-semibold">{txtslicer(title, 25)}</h3>
+      <p className="text-sm text-gray-500 break-words">
+        {txtslicer(description)}
+      </p>
       <div className="flex items-center gap-1 my-2">
         <span className="w-5 h-5 rounded-full bg-gray-950 cursor-pointer" />
         <span className="w-5 h-5 rounded-full bg-orange-500 cursor-pointer" />
@@ -34,10 +36,10 @@ const ProductCard = ({ product }: IProps) => {
       </div>
 
       <div className="flex items-center justify-between space-x-2 mt-5">
-        <Button ClassName=" bg-indigo-700" width="w-full">
-          Edit
+        <Button ClassName=" bg-indigo-700 hover:bg-indigo-800" width="w-full">
+          EDIT
         </Button>
-        <Button ClassName=" bg-red-700 w-full">Delete</Button>
+        <Button ClassName=" bg-red-700 hover:bg-red-800 w-full">DELETE</Button>
       </div>
     </div>
   );
